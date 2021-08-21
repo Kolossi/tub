@@ -1,0 +1,1 @@
+console.debug("tubtub:content-script: "+ window.location.href);
