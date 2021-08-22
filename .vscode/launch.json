@@ -8,9 +8,9 @@
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/net5.0-windows/tub.dll",
-            "args": [],
+            "preLaunchTask": "build Debug",
+            "program": "${workspaceFolder}/Tub.ChromiumRelay/bin/Debug/net5.0-windows/Tub.ChromiumRelay.exe",
+            "args": ["--register"],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false

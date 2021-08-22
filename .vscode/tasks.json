@@ -2,16 +2,35 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build Debug",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/tub.csproj",
+                "${workspaceFolder}/Tub.ChromiumRelay/Tub.ChromiumRelay.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build Release",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Tub.ChromiumRelay/Tub.ChromiumRelay.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-c",
+                "Release"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
         },
         {
             "label": "publish",
@@ -19,7 +38,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/tub.csproj",
+                "${workspaceFolder}/Tub.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +51,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/tub.csproj",
+                "${workspaceFolder}/Tub.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
