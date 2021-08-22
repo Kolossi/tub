@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tub.ChromiumRelay", "..\Tub.ChromiumRelay\Tub.ChromiumRelay.csproj", "{15AF1049-EE9B-42EE-B693-E3BF3A1B049D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tub.ChromiumRelay", "Tub.ChromiumRelay\Tub.ChromiumRelay.csproj", "{15AF1049-EE9B-42EE-B693-E3BF3A1B049D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tub.UI", "Tub.UI\Tub.UI.csproj", "{FFF6111F-A757-403D-BA9D-EA57459CFE22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +32,17 @@ Global
 		{15AF1049-EE9B-42EE-B693-E3BF3A1B049D}.Release|x64.Build.0 = Release|Any CPU
 		{15AF1049-EE9B-42EE-B693-E3BF3A1B049D}.Release|x86.ActiveCfg = Release|Any CPU
 		{15AF1049-EE9B-42EE-B693-E3BF3A1B049D}.Release|x86.Build.0 = Release|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Debug|x64.Build.0 = Debug|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Debug|x86.Build.0 = Debug|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Release|x64.ActiveCfg = Release|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Release|x64.Build.0 = Release|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Release|x86.ActiveCfg = Release|Any CPU
+		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
