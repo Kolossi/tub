@@ -1,2 +1,2 @@
 # tub
-The Ultimate Bookmarker
+The Ultimate Browser

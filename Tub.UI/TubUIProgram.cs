@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tub.UI
+namespace Kolossi.Tub.UI
 {
-    static class Program
+    static class TubUIProgram
     {
         /// <summary>
         ///  The main entry point for the application.

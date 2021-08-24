@@ -1,4 +1,4 @@
-﻿namespace Tub.UI
+﻿namespace Kolossi.Tub.UI
 {
     partial class Form1
     {

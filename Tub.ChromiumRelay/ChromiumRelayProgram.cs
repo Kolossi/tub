@@ -2,12 +2,12 @@
 using System.Linq;
 using NativeMessaging;
 
-namespace Kolossi.Tub
+namespace Kolossi.Tub.ChromiumRelay
 {
     // thanks: https://icon-library.com/icon/bathroom-icon-4.html
     // thanks: https://github.com/acandylevey/NativeMessaging
     // https://developer.chrome.com/docs/apps/nativeMessaging/#native-messaging-debugging
-    class Program
+    class ChromiumRelayProgram
     {
          static ChromiumMessagingHost Host;
 

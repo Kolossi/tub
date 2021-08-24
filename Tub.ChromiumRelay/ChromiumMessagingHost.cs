@@ -5,13 +5,13 @@ using NativeMessaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Kolossi.Tub
+namespace Kolossi.Tub.ChromiumRelay
 {
 
     public class ChromiumMessagingHost : Host
     {
         static string[] AllowedOrigins = new string[] { "chrome-extension://ljoejfleopffmmhcdnaiobcbeafhbdca/" };
-        static string Description = "Tub - The Ultimate Bookmarker";
+        static string Description = "Tub - The Ultimate Browser";
 
         static public string AssemblyLoadDirectory
         {
@@ -49,6 +49,8 @@ namespace Kolossi.Tub
         protected override void ProcessReceivedMessage(JObject data)
         {
             DumpText($"{DateTime.Now:s} : {JsonConvert.SerializeObject( data, Formatting.Indented )}");
+            // %%% see https://docs.microsoft.com/en-us/dotnet/standard/io/how-to-use-named-pipes-for-network-interprocess-communication
+            // %%% see  https://docs.microsoft.com/en-us/aspnet/core/grpc/basics?view=aspnetcore-5.0
         }
 
         private void DumpText(string text)

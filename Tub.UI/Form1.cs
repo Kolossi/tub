@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tub.UI
+namespace Kolossi.Tub.UI
 {
     public partial class Form1 : Form
     {
