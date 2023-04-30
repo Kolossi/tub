@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Tub.ChromiumRelay/Tub.ChromiumRelay.csproj",
+                "${workspaceFolder}/Tub.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -23,7 +23,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Tub.ChromiumRelay/Tub.ChromiumRelay.csproj",
+                "${workspaceFolder}/Tub.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-c",

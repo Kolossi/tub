@@ -13,8 +13,8 @@
         "default_icon": {
           
           "16": "images/tub16.png",
-          "24": "images/tub24.png",
           "32": "images/tub32.png",
+          "48": "images/tub48.png",
           "64": "images/tub64.png",
           "96": "images/tub96.png",
           "128": "images/tub128.png"
@@ -29,7 +29,7 @@
         }
     ],
     "background": {
-        "service_worker": "background.js"
-        //"type": "module"  // https://developer.chrome.com/docs/extensions/mv3/service_workers/#manifest
+        "service_worker": "background.js",
+        "type": "module"  // https://developer.chrome.com/docs/extensions/mv3/service_workers/#manifest
       }
 }

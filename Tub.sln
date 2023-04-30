@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tub.ChromiumRelay", "Tub.Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tub.UI", "Tub.UI\Tub.UI.csproj", "{FFF6111F-A757-403D-BA9D-EA57459CFE22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tub.Messages", "Tub.Messages\Tub.Messages.csproj", "{C378B60B-6EB0-4973-B67E-266BB4AF9947}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tub.BrowserLogic", "Tub.BrowserLogic\Tub.BrowserLogic.csproj", "{F8097464-7F15-44AB-A48E-36EFD330BDEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +48,29 @@ Global
 		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Release|x64.Build.0 = Release|Any CPU
 		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Release|x86.ActiveCfg = Release|Any CPU
 		{FFF6111F-A757-403D-BA9D-EA57459CFE22}.Release|x86.Build.0 = Release|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Debug|x64.Build.0 = Debug|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Debug|x86.Build.0 = Debug|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Release|x64.ActiveCfg = Release|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Release|x64.Build.0 = Release|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Release|x86.ActiveCfg = Release|Any CPU
+		{C378B60B-6EB0-4973-B67E-266BB4AF9947}.Release|x86.Build.0 = Release|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Debug|x64.Build.0 = Debug|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Debug|x86.Build.0 = Debug|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Release|x64.ActiveCfg = Release|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Release|x64.Build.0 = Release|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Release|x86.ActiveCfg = Release|Any CPU
+		{F8097464-7F15-44AB-A48E-36EFD330BDEE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
