@@ -16,12 +16,12 @@ namespace Tub.BrowserLogic
         }
     }
 
-    public static class JSTest
-    {
-        [JSInvokable(TestMethod)]
-        public static string TestMethod(string foo)
-        {
-            return string.Format("Foo: {0}", foo);
-        }
-    }
+    // public static class JSTest
+    // {
+    //     [JSInvokable(TestMethod)]
+    //     public static string TestMethod(string foo)
+    //     {
+    //         return string.Format("Foo: {0}", foo);
+    //     }
+    // }
 }
