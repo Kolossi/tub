@@ -4,7 +4,6 @@
 var tubPort = chrome.runtime.connectNative('uk.co.kolossi.tub');
 
 chrome.webRequest.onBeforeRequest.addListener((details) => {
-    console.debug("tubtub:background:BeforeNavigation:Begin");
     if (!tubPort) return { cancel: false };
     var tab = chrome.tabs.get(details.tabId, (tab) => {
         if (details.frameId != 0) return;
