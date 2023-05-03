@@ -10,7 +10,7 @@ namespace Kolossi.Tub.ChromiumRelay
 
     public class ChromiumMessagingHost : Host
     {
-        static string[] AllowedOrigins = new string[] { "chrome-extension://ljoejfleopffmmhcdnaiobcbeafhbdca/" };
+        static string[] AllowedOrigins = new string[] { "chrome-extension://kbahcfhlnligomppankjnnljjoghnnkf/" };
         static string Description = "Tub - The Ultimate Browser";
 
         static public string AssemblyLoadDirectory

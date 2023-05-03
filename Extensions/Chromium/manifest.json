@@ -1,13 +1,13 @@
 {
-    // https://developer.chrome.com/docs/extensions/mv3/manifest/
     "manifest_version": 3,
     "name": "Tub - The Ultimate Browser",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "permissions": [
         "tabs",
         "webNavigation",
         "webRequest",
-        "nativeMessaging"
+        "nativeMessaging",
+        "declarativeNetRequest"
     ],
     "action": {
         "default_icon": {
@@ -29,7 +29,6 @@
         }
     ],
     "background": {
-        "service_worker": "background.js",
-        "type": "module"  // https://developer.chrome.com/docs/extensions/mv3/service_workers/#manifest
+        "service_worker": "background-loader.js"
       }
 }
