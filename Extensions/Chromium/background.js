@@ -14,13 +14,26 @@ function consoledebug(message)
 ///////////////////////////////
 /// stop new tab creation if tab already exists
 
+chrome.webRequest.onBeforeRequest.addListener((details) => {
+    consoledebug("tubtub:background:webRequest.onBeforeRequest:details:" + JSON.stringify(details));
+    if (details.tabId<=0)
+    SetTabMethodAndClearUrl(details.tabId, details.method);    
+    if (details.method!="GET") return;
+    var strategy=GetStrategy(details);
+    consoledebug("      tubtub:background:webRequest.onBeforeRequest:strategy:" + JSON.stringify(strategy));
+    if (strategy.block) PerformStrategy(strategy);
+},
+{ urls: ["<all_urls>"], types: ["main_frame"] }
+);
+
 chrome.webNavigation.onCreatedNavigationTarget.addListener((details) => {
     consoledebug("tubtub:background:webNavigation.onCreatedNavigationTarget:details:" + JSON.stringify(details));
     //if (!tubPort) return;
     if (details.tabId<=0) return;
+    SetCreatingTabFlag(details.tabId, true);
     var strategy=GetStrategy(details);
     consoledebug("      tubtub:background:webNavigation.onCreatedNavigationTarget:strategy:" + JSON.stringify(strategy));
-    PerformStrategy(strategy);
+    if (strategy.block) PerformStrategy(strategy);
 });
 
 chrome.webNavigation.onHistoryStateUpdated.addListener((details) => {
@@ -29,36 +42,14 @@ chrome.webNavigation.onHistoryStateUpdated.addListener((details) => {
     if (details.tabId<=0) return;
     var strategy=GetStrategy(details);
     consoledebug("      tubtub:background:webNavigation.onHistoryStateUpdated:strategy:" + JSON.stringify(strategy));
-    PerformStrategy(strategy);
+    if (strategy.block) PerformStrategy(strategy);
 });
-
-chrome.webRequest.onBeforeRequest.addListener((details) => {
-    consoledebug("tubtub:background:webRequest.onBeforeRequest:details:" + JSON.stringify(details));
-    if (details.tabId<=0 || details.method!="GET") return;
-    var strategy=GetStrategy(details);
-    consoledebug("      tubtub:background:webRequest.onBeforeRequest:strategy:" + JSON.stringify(strategy));
-    PerformStrategy(strategy);
-},
-{ urls: ["<all_urls>"], types: ["main_frame"] }
-);
 
 ///
 ////////////////////////////////////
 
 /////////////////////////////////
 /// tab state tracking
-chrome.webRequest.onBeforeRequest.addListener((details) => {
-    consoledebug("tubtub:background:webRequest.onBeforeRequest:details:" + JSON.stringify(details));
-    if (details.tabId<=0) return;
-    SetTabMethodAndClearUrl(details.tabId, details.method);
-},
-{ urls: ["<all_urls>"], types: ["main_frame"] }
-);
-
-chrome.webNavigation.onCreatedNavigationTarget.addListener((details) => {
-    consoledebug("tubtub:background:webNavigation.onCreatedNavigationTarget:details:" + JSON.stringify(details));
-    SetCreatingTabFlag(details.tabId, true);
-});
 
 chrome.webRequest.onCompleted.addListener((details) => {
     consoledebug("tubtub:background:webRequest.onCompleted:details:" + JSON.stringify(details));
@@ -75,7 +66,7 @@ chrome.webNavigation.onCompleted.addListener((details) => {
     var strategy=GetStrategy(details);
     consoledebug("      tubtub:background:webNavigation.onCompleted:strategy:" + JSON.stringify(strategy));
     SetTabUrl(details.tabId, details.url)
-    PerformStrategy(strategy);
+    if (strategy.block) PerformStrategy(strategy);
     SetCreatingTabFlag(details.tabId, false)
 });
 
@@ -196,7 +187,9 @@ function GoBackTab(tabId)
 
 function GetStrategy(details)
 {
+    consoledebug("tubtub:background:GetStrategy");
     var tabState=tabStates[details.tabId];
+    consoledebug("  tubtub:background:GetStrategy:tabState:"+JSON.stringify(tabState))
     if (tabState!==undefined && tabState.method && tabState.method != "GET") return;
     var strategy={ block: false };
     var url=TidyUrl(details.url);
@@ -204,7 +197,12 @@ function GetStrategy(details)
     
     if (targetTab !== undefined && details.tabId != targetTab.id)
     {
+        var chromeTab = chrome.tabs.get(targetTab.id);
+        consoledebug("  tubtub:background:GetStrategy:chromeTab:"+JSON.stringify(chromeTab))
+        if (chromeTab===undefined) RemoveTabState(targetTab.id);
+        strategy.block=true;
         strategy.activateTabId = targetTab.id;
+        consoledebug("  tubtub:background:GetStrategy:tabState:"+JSON.stringify(tabState))
         if (tabState.creatingTab) {
             strategy.closeTabId=details.tabId;
         } else {
@@ -219,7 +217,7 @@ function PerformStrategy(strategy)
 {
     if (strategy.activateTabId) ActivateTab(strategy.activateTabId);
     if (strategy.closeTabId) CloseTab(strategy.closeTabId);
-    if (strategy.backTabId) GoBackTab(str.backTabId);
+    if (strategy.backTabId) GoBackTab(strategy.backTabId);
 }
 
 // chrome.webRequest.onBeforeRequest.addListener((details) => {
