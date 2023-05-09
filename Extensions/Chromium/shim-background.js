@@ -184,7 +184,7 @@ chrome.tabs.onRemoved.addListener((tabId,removeInfo) => {
     consoledebug("tubtub:background:tabs.onRemoved:tabId: "+tabId+" removeInfo:" + JSON.stringify(removeInfo));
     BroadcastMessage({
         type: "Kolossi.Tub.Messsages.Tabs.Removed",
-        tabId: details.tabId, 
+        tabId: tabId, 
         isWindowClosing: removeInfo.isWindowClosing,
         windowId: removeInfo.windowId
     });
