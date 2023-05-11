@@ -49,8 +49,62 @@ namespace Kolossi.Tub.ChromiumRelay
         protected override void ProcessReceivedMessage(JObject data)
         {
             DumpText($"{DateTime.Now:s} : {JsonConvert.SerializeObject( data, Formatting.Indented )}");
+
+            var dataType = data["type"].ToString();
+            JObject response;
+
+            switch (dataType)
+            {
+                case "Kolossi.Tub.Messsages.WebRequest.BeforeRedirect":
+                    response=messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebRequest.BeforeRedirect>());
+                    break;
+                case "Kolossi.Tub.Messsages.WebRequest.BeforeRequest":
+                    response=messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebRequest.BeforeRequest>());
+                    break;
+                case "Kolossi.Tub.Messsages.WebRequest.Completed":
+                    response=messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebRequest.Completed>());
+                    break;
+                case "Kolossi.Tub.Messsages.WebRequest.ErrorOccurred":
+                    response=messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebRequest.ErrorOccurred>());
+                    break;
+                case "Kolossi.Tub.Messsages.WebNavigation.Completed":
+                    response=messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebNavigation.Completed>());
+                    break;
+                case "Kolossi.Tub.Messsages.WebNavigation.CreatedNavigationTarget":
+                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebNavigation.CreatedNavigationTarget>());
+                    break;
+                case "Kolossi.Tub.Messsages.WebNavigation.ErrorOccurred":
+                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebNavigation.ErrorOccurred>());
+                    break;
+                case "Kolossi.Tub.Messsages.WebNavigation.HistoryStateUpdated":
+                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebNavigation.HistoryStateUpdated>());
+                    break;
+                case "Kolossi.Tub.Messsages.WebNavigation.ReferenceFragmentUpdated":
+                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebNavigation.ReferenceFragmentUpdated>());
+                    break;
+                case "Kolossi.Tub.Messsages.Tabs.Attached":
+                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.Tabs.Attached>());
+                    break;
+                case "Kolossi.Tub.Messsages.Tabs.Detached":
+                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.Tabs.Detached>());
+                    break;
+                case "Kolossi.Tub.Messsages.Tabs.Removed":
+                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.Tabs.Removed>());
+                    break;
+                case "Kolossi.Tub.Messsages.Tabs.Replaced":
+                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.Tabs.Replaced>());
+                    break;
+                case "Kolossi.Tub.Messsages.Tabs.Updated":
+                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.Tabs.Updated>());
+                    break;
+                default:
+                    throw new InvalidDataException($"Unrecognised message type {type}");
+            }
+
+
             // %%% see https://docs.microsoft.com/en-us/dotnet/standard/io/how-to-use-named-pipes-for-network-interprocess-communication
             // %%% see  https://docs.microsoft.com/en-us/aspnet/core/grpc/basics?view=aspnetcore-5.0
+
         }
 
         private void DumpText(string text)
