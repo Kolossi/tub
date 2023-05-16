@@ -1,9 +1,10 @@
-using System;
-using System.IO;
-using System.Reflection;
+using Kolossi.Tub.BrowserLogic;
 using NativeMessaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace Kolossi.Tub.ChromiumRelay
 {
@@ -40,6 +41,8 @@ namespace Kolossi.Tub.ChromiumRelay
         {
             get { return "uk.co.kolossi.tub"; }
         }
+        
+        private MessageProcessor MessageProcessor = new MessageProcessor();
 
         public ChromiumMessagingHost() : base(SendConfirmationReceipt)
         {
@@ -51,54 +54,53 @@ namespace Kolossi.Tub.ChromiumRelay
             DumpText($"{DateTime.Now:s} : {JsonConvert.SerializeObject( data, Formatting.Indented )}");
 
             var dataType = data["type"].ToString();
-            JObject response;
 
             switch (dataType)
             {
                 case "Kolossi.Tub.Messsages.WebRequest.BeforeRedirect":
-                    response=messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebRequest.BeforeRedirect>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.WebRequest.BeforeRedirect>());
                     break;
                 case "Kolossi.Tub.Messsages.WebRequest.BeforeRequest":
-                    response=messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebRequest.BeforeRequest>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.WebRequest.BeforeRequest>());
                     break;
                 case "Kolossi.Tub.Messsages.WebRequest.Completed":
-                    response=messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebRequest.Completed>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.WebRequest.Completed>());
                     break;
                 case "Kolossi.Tub.Messsages.WebRequest.ErrorOccurred":
-                    response=messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebRequest.ErrorOccurred>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.WebRequest.ErrorOccurred>());
                     break;
                 case "Kolossi.Tub.Messsages.WebNavigation.Completed":
-                    response=messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebNavigation.Completed>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.WebNavigation.Completed>());
                     break;
                 case "Kolossi.Tub.Messsages.WebNavigation.CreatedNavigationTarget":
-                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebNavigation.CreatedNavigationTarget>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.WebNavigation.CreatedNavigationTarget>());
                     break;
                 case "Kolossi.Tub.Messsages.WebNavigation.ErrorOccurred":
-                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebNavigation.ErrorOccurred>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.WebNavigation.ErrorOccurred>());
                     break;
                 case "Kolossi.Tub.Messsages.WebNavigation.HistoryStateUpdated":
-                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebNavigation.HistoryStateUpdated>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.WebNavigation.HistoryStateUpdated>());
                     break;
                 case "Kolossi.Tub.Messsages.WebNavigation.ReferenceFragmentUpdated":
-                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.WebNavigation.ReferenceFragmentUpdated>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.WebNavigation.ReferenceFragmentUpdated>());
                     break;
                 case "Kolossi.Tub.Messsages.Tabs.Attached":
-                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.Tabs.Attached>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.Tabs.Attached>());
                     break;
                 case "Kolossi.Tub.Messsages.Tabs.Detached":
-                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.Tabs.Detached>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.Tabs.Detached>());
                     break;
                 case "Kolossi.Tub.Messsages.Tabs.Removed":
-                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.Tabs.Removed>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.Tabs.Removed>());
                     break;
                 case "Kolossi.Tub.Messsages.Tabs.Replaced":
-                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.Tabs.Replaced>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.Tabs.Replaced>());
                     break;
                 case "Kolossi.Tub.Messsages.Tabs.Updated":
-                    messageProcessor.Process(data.ToObject<Kolossi.Tub.Messsages.Tabs.Updated>());
+                    MessageProcessor.Process(data.ToObject<Kolossi.Tub.Messages.Tabs.Updated>());
                     break;
                 default:
-                    throw new InvalidDataException($"Unrecognised message type {type}");
+                    throw new InvalidDataException($"Unrecognised message type {dataType}");
             }
 
 

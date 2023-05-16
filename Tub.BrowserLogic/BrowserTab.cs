@@ -1,3 +1,5 @@
+using Kolossi.Tub.Messages;
+
 namespace Kolossi.Tub.BrowserLogic
 {
     public class BrowserTab
@@ -12,7 +14,7 @@ namespace Kolossi.Tub.BrowserLogic
 
         public BrowserTab(int Id)
         {
-            Id=Id;
+            this.Id=Id;
         }
     }
 }

@@ -4,6 +4,9 @@
     <TargetFramework>net6.0-windows</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tub.BrowserLogic\Tub.BrowserLogic.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="NativeMessaging" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>

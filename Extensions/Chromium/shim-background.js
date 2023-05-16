@@ -81,7 +81,9 @@ chrome.webRequest.onErrorOccurred.addListener((details) => {
                 type: "Kolossi.Tub.Messsages.WebRequest.ErrorOccurred",
                 tabId: details.tabId, 
                 method: details.method,
+                error: details.error,
                 url: details.url
+                
         });
 },
 { urls: ["<all_urls>"], types: ["main_frame"] }
@@ -156,6 +158,8 @@ chrome.webNavigation.onReferenceFragmentUpdated.addListener((details) => {
     BroadcastMessage({
         type: "Kolossi.Tub.Messsages.WebNavigation.ReferenceFragmentUpdated",
         tabId: details.tabId, 
+        transitionQualifiers: details.transitionQualifiers,
+        transitionType: details.transitionType,
         url: details.url
     });
 });
@@ -171,7 +175,7 @@ chrome.tabs.onAttached.addListener((tabId,attachInfo) => {
     });
 });
 
-chrome.tabs.onAttached.addListener((tabId,detachInfo) => {
+chrome.tabs.onDetached.addListener((tabId,detachInfo) => {
     consoledebug("tubtub:background:tabs.onDetached:tabId: "+tabId+" detachInfo:" + JSON.stringify(detachInfo));
     BroadcastMessage({
         type: "Kolossi.Tub.Messsages.Tabs.Detached",

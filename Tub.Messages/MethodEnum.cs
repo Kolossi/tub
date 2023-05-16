@@ -1,6 +1,6 @@
-namespace Kolossi.Tub.BrowserLogic
+namespace Kolossi.Tub.Messages
 {
-    enum MethodEnum
+    public enum MethodEnum
     {
         UNKNOWN=0,
         GET=1,	
