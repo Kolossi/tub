@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 using NativeMessaging;
 
 namespace Kolossi.Tub.ChromiumRelay
@@ -9,11 +10,24 @@ namespace Kolossi.Tub.ChromiumRelay
     // https://developer.chrome.com/docs/apps/nativeMessaging/#native-messaging-debugging
     class ChromiumRelayProgram
     {
-         static ChromiumMessagingHost Host;
+        static ChromiumMessagingHost Host;
+        
+        static ILogger Logger;
 
         static void Main(string[] args)
         {
-            Host = new ChromiumMessagingHost();
+            using var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder
+                    .AddFilter("Microsoft", LogLevel.Warning)
+                    .AddFilter("System", LogLevel.Warning)
+                    .AddFilter("Kolossi.Tub.ChromiumRelay.ChromiumRelayProgram", LogLevel.Debug)
+                    .AddConsole();
+            });
+
+            ILogger logger = loggerFactory.CreateLogger<ChromiumRelayProgram>();
+            
+            Host = new ChromiumMessagingHost(logger);
             Host.SupportedBrowsers.Add(ChromiumBrowser.GoogleChrome);
             Host.SupportedBrowsers.Add(ChromiumBrowser.MicrosoftEdge);
 

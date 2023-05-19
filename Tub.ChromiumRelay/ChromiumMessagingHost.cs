@@ -1,4 +1,5 @@
 using Kolossi.Tub.BrowserLogic;
+using Microsoft.Extensions.Logging;
 using NativeMessaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -11,6 +12,8 @@ namespace Kolossi.Tub.ChromiumRelay
 
     public class ChromiumMessagingHost : Host
     {
+        private ILogger Logger;
+        
         static string[] AllowedOrigins = new string[] { "chrome-extension://kbahcfhlnligomppankjnnljjoghnnkf/" };
         static string Description = "Tub - The Ultimate Browser";
 
@@ -42,10 +45,12 @@ namespace Kolossi.Tub.ChromiumRelay
             get { return "uk.co.kolossi.tub"; }
         }
         
-        private MessageProcessor MessageProcessor = new MessageProcessor();
+        private MessageProcessor MessageProcessor;
 
-        public ChromiumMessagingHost() : base(SendConfirmationReceipt)
+        public ChromiumMessagingHost(ILogger logger) : base(SendConfirmationReceipt)
         {
+            Logger=logger;
+            MessageProcessor=new MessageProcessor(logger);
             ManifestPath = Path.Combine(AssemblyLoadDirectory, Hostname + "-manifest.json");
         }
 

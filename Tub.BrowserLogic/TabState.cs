@@ -2,7 +2,7 @@ using Kolossi.Tub.Messages;
 
 namespace Kolossi.Tub.BrowserLogic
 {
-    public class BrowserTab
+    public class TabState
     {
         public int WindowId { get; set; }
         public int Id { get; set; }
@@ -12,7 +12,7 @@ namespace Kolossi.Tub.BrowserLogic
         public bool NavigationInProgress { get; set; }
         public bool CreationInProgress { get; set; }
 
-        public BrowserTab(int Id)
+        public TabState(int Id)
         {
             this.Id=Id;
         }
