@@ -1,6 +1,5 @@
 using Kolossi.Tub.Messages;
 using Kolossi.Tub.Utils;
-
 using System.Collections.Generic;
 
 namespace Kolossi.Tub.BrowserLogic

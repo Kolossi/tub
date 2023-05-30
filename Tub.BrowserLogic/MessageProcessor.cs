@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
 
 namespace Kolossi.Tub.BrowserLogic
 {
@@ -23,10 +24,10 @@ namespace Kolossi.Tub.BrowserLogic
         public void Process(Kolossi.Tub.Messages.WebRequest.BeforeRedirect message) {}
         public void Process(Kolossi.Tub.Messages.WebRequest.BeforeRequest message) 
         {
-            SetTabMethodAndClearUrl(message.TabId, message.Method);
+            BrowserStateRepository.SetTabMethodAndClearUrl(message.TabId, message.Method);
             if (message.Method != Messages.MethodEnum.GET) return;
             var strategy = GetStrategy(details);
-            Logger.LogDebug("tubtub:background:WebRequest.BeforeRequest:strategy:" + JSON.stringify(strategy));
+            Logger.LogDebug("tubtub:background:WebRequest.BeforeRequest:strategy:" + JsonSerializer.Serialize(strategy));
             if (strategy.block) PerformStrategy(strategy);
         }
         public void Process(Kolossi.Tub.Messages.WebRequest.Completed message) {}
